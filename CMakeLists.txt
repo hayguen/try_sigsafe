@@ -21,6 +21,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 
 add_subdirectory( try_sigsafe )
+add_subdirectory( try_sigsafe_pp )
 
 
 if ( CMAKE_C_COMPILER_ID MATCHES "MSVC" )
@@ -30,11 +31,17 @@ endif()
 
 
 add_executable( test_c test_c.c )
+add_executable( test_cpp test.cpp )
 
 target_link_libraries( test_c   try_sigsafe )
+target_link_libraries( test_cpp try_sigsafe_pp )
 
 set_property(TARGET test_c   PROPERTY C_STANDARD 11)
 set_property(TARGET test_c   PROPERTY C_STANDARD_REQUIRED ON)
+
+set_property(TARGET test_cpp PROPERTY CXX_STANDARD 11)
+set_property(TARGET test_cpp PROPERTY CXX_STANDARD_REQUIRED ON)
+
 
 enable_testing()
 
